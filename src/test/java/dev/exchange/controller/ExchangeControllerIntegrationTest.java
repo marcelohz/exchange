@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 @SpringBootTest
@@ -49,7 +50,7 @@ public class ExchangeControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(new ExchangeRequest(10, 1))))
                 .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errorCode").value(ExceededMaxCoinsException.errorCode));
+                .andExpect(MockMvcResultMatchers.content().string(containsString("exceeded")));
 
     }
 
@@ -59,7 +60,7 @@ public class ExchangeControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(new ExchangeRequest(1000))))
                 .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errorCode", is(InsufficientCoinsException.errorCode)));
+                .andExpect(MockMvcResultMatchers.content().string(containsString("insufficient")));
     }
 
     @Test
@@ -74,7 +75,8 @@ public class ExchangeControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(new ExchangeRequest(1))))
                 .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errorCode", is(InsufficientCoinsException.errorCode)));
+                .andExpect(MockMvcResultMatchers.content().string(containsString("insufficient")));
+
     }
 
     private void performExchangeRequestAndVerify(int billValue, int giveCoin25, int giveCoin10, int giveCoin5, int giveCoin1) throws Exception {

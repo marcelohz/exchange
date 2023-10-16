@@ -6,9 +6,6 @@ import lombok.Data;
 @Data
 public class ExchangeResponse {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    ErrorResponse error = null;
-
     int giveCoin1;
     int giveCoin5;
     int giveCoin10;

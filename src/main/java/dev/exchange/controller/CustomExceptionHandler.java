@@ -17,25 +17,21 @@ public class CustomExceptionHandler {
     public ResponseEntity<String> handleInvalidJsonFormat(InvalidJsonFormatException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
+
     @ExceptionHandler(InsufficientCoinsException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ResponseEntity<ErrorResponse> handleInsufficientCoins(InsufficientCoinsException ex) {
-
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(),
-                InsufficientCoinsException.errorCode);
+    public ResponseEntity<String> handleInsufficientCoins(InsufficientCoinsException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(errorResponse);
+                .body("error: insufficient coins");
     }
+
     @ExceptionHandler(ExceededMaxCoinsException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ResponseEntity<ErrorResponse> handleMaxCoinsExceeded(ExceededMaxCoinsException ex) {
-
-        ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(),
-                ExceededMaxCoinsException.errorCode);
+    public ResponseEntity<String> handleMaxCoinsExceeded(ExceededMaxCoinsException ex) {
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(errorResponse);
+                .body("error: max coins exceeded");
     }
 
 }
