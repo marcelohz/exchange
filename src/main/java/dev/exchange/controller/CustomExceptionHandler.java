@@ -1,6 +1,5 @@
 package dev.exchange.controller;
 
-import dev.exchange.dto.ApiResponse;
 import dev.exchange.dto.ErrorResponse;
 import dev.exchange.service.ExceededMaxCoinsException;
 import dev.exchange.service.InsufficientCoinsException;

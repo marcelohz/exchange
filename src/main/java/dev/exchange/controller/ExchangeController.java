@@ -1,16 +1,15 @@
 package dev.exchange.controller;
 
 import dev.exchange.dto.ApiResponse;
-import dev.exchange.dto.ErrorResponse;
 import dev.exchange.dto.ExchangeRequest;
 import dev.exchange.dto.ExchangeResponse;
-import dev.exchange.service.ExceededMaxCoinsException;
 import dev.exchange.service.ExchangeService;
-import dev.exchange.service.InsufficientCoinsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")

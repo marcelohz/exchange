@@ -15,7 +15,7 @@ public class ApiResponse<T> {
         this.coins = coins;
     }
 
-    public ApiResponse(ErrorResponse error) {
-        this.error = error;
-    }
+//    public ApiResponse(ErrorResponse error) {
+//        this.error = error;
+//    }
 }
