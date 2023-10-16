@@ -28,23 +28,8 @@ public class ExchangeController {
         if (exchangeRequest == null || !isValid(exchangeRequest)) {
             throw new InvalidJsonFormatException("Invalid JSON format. Please provide valid data.");
         }
-        try {
             ExchangeResponse response = exchangeService.processExchange(exchangeRequest.getBillValue(), exchangeRequest.getMaxCoins());
             return ResponseEntity.ok(new ApiResponse<>(response));
-        } catch (InsufficientCoinsException e) {
-            ErrorResponse errorResponse = new ErrorResponse(e.getMessage(),
-                    "INSUFFICIENT_COINS");
-            return ResponseEntity
-                    .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                    .body(new ApiResponse<>(errorResponse));
-
-        } catch (ExceededMaxCoinsException e) {
-            ErrorResponse errorResponse = new ErrorResponse(e.getMessage(),
-                    "MAX_COINS_EXCEEDED");
-            return ResponseEntity
-                    .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                    .body(new ApiResponse<>(errorResponse));
-        }
     }
 
     private boolean isValid(ExchangeRequest exchangeRequest) {

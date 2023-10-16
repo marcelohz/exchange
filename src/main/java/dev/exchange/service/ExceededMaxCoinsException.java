@@ -1,8 +1,8 @@
 package dev.exchange.service;
 
-public class ExceededMaxCoinsException extends Exception {
+public class ExceededMaxCoinsException extends RuntimeException {
 
-    public static String code = "MAX_COINS_EXCEEDED";
+    public static String errorCode = "MAX_COINS_EXCEEDED";
 
     public ExceededMaxCoinsException() {
         super("Would need more coins for this bill");

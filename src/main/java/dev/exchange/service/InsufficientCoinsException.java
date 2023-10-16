@@ -1,8 +1,8 @@
 package dev.exchange.service;
 
-public class InsufficientCoinsException extends Exception {
+public class InsufficientCoinsException extends RuntimeException {
 
-    public static String code = "INSUFFICIENT_COINS";
+    public static String errorCode = "INSUFFICIENT_COINS";
 
     public InsufficientCoinsException() {
         super("Insufficient coins to process transaction");
