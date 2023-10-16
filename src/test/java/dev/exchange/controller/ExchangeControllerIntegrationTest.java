@@ -85,10 +85,10 @@ public class ExchangeControllerIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/exchange")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(exchangeRequest)))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.coins.giveCoin25").value(giveCoin25))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.coins.giveCoin10").value(giveCoin10))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.coins.giveCoin5").value(giveCoin5))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.coins.giveCoin1").value(giveCoin1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.giveCoin25").value(giveCoin25))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.giveCoin10").value(giveCoin10))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.giveCoin5").value(giveCoin5))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.giveCoin1").value(giveCoin1))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

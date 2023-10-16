@@ -1,6 +1,5 @@
 package dev.exchange.controller;
 
-import dev.exchange.dto.ApiResponse;
 import dev.exchange.dto.ExchangeRequest;
 import dev.exchange.dto.ExchangeResponse;
 import dev.exchange.service.ExchangeService;
@@ -23,12 +22,12 @@ public class ExchangeController {
     }
 
     @PostMapping("/exchange")
-    public ResponseEntity<ApiResponse<ExchangeResponse>> exchange(@RequestBody(required = false) ExchangeRequest exchangeRequest) {
+    public ResponseEntity<ExchangeResponse> exchange(@RequestBody(required = false) ExchangeRequest exchangeRequest) {
         if (exchangeRequest == null || !isValid(exchangeRequest)) {
             throw new InvalidJsonFormatException("Invalid JSON, please provide billValue, e.g.: {\"billValue\":20}");
         }
         ExchangeResponse response = exchangeService.processExchange(exchangeRequest.getBillValue(), exchangeRequest.getMaxCoins());
-        return ResponseEntity.ok(new ApiResponse<>(response));
+        return ResponseEntity.ok(response);
     }
 
     private boolean isValid(ExchangeRequest exchangeRequest) {

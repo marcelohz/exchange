@@ -9,7 +9,6 @@ public class ExchangeResponse {
     int giveCoin1;
     int giveCoin5;
     int giveCoin10;
-
     int giveCoin25;
 
     public ExchangeResponse(int coin1, int coin5, int coin10, int coin25) {
@@ -17,7 +16,6 @@ public class ExchangeResponse {
         this.giveCoin5 = coin5;
         this.giveCoin10 = coin10;
         this.giveCoin25 = coin25;
-
     }
 }
 
