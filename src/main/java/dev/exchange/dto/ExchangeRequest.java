@@ -11,6 +11,9 @@ public class ExchangeRequest {
     private int billValue;
     private Integer maxCoins;
 
+    /**
+     * @param billValue value of the bill, in dollars
+     */
     public ExchangeRequest(int billValue) {
         this.billValue = billValue;
         this.maxCoins = null;

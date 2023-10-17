@@ -17,8 +17,12 @@ public class ExchangeInventory {
     @Value("${coin.starting-amount.25}")
     int coins25;
 
-    public int getCoins(int value) {
-        switch (value) {
+    /**
+     * @param type which coin to get
+     * @return number of coins in inventory
+     */
+    public int getCoins(int type) {
+        switch (type) {
             case 1:
                 return coins1;
             case 5:
@@ -28,9 +32,13 @@ public class ExchangeInventory {
             case 25:
                 return coins25;
         }
-        throw new RuntimeException("asked an ExchangeInventory for invalid coin: " + value);
+        throw new RuntimeException("asked an ExchangeInventory for invalid coin: " + type);
     }
 
+    /**
+     * @param coinValue which coin to subtract
+     * @param toSubtract how much to subtract
+     */
     public void subtractCoins(int coinValue, int toSubtract) {
         switch (coinValue) {
             case 1:
