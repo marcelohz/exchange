@@ -37,9 +37,8 @@ class ExchangeServiceTest {
 
     @Test
     void testSingleExchangeExceedingMaxCoins() {
-        assertThrows(ExceededMaxCoinsException.class, () -> {
-            exchangeService.processExchange(20, 10);
-        });
+        assertThrows(ExceededMaxCoinsException.class, () ->
+                exchangeService.processExchange(20, 10));
     }
 
     @Test
@@ -53,9 +52,9 @@ class ExchangeServiceTest {
 
     @Test
     void testInsufficientCoins()  {
-        assertThrows(InsufficientCoinsException.class, () -> {
-            exchangeService.processExchange(1000);
-        });
+        assertThrows(InsufficientCoinsException.class, () ->
+            exchangeService.processExchange(1000)
+        );
     }
     @Test
     void testMultipleExchangesUntilInsufficient() {
@@ -83,8 +82,8 @@ class ExchangeServiceTest {
         assertEquals(100, response.getGiveCoin1());
         when(exchangeInventory.getCoins(1)).thenReturn(0);
 
-        assertThrows(InsufficientCoinsException.class, () -> {
-            exchangeService.processExchange(1);
-        });
+        assertThrows(InsufficientCoinsException.class, () ->
+            exchangeService.processExchange(1)
+        );
     }
 }
