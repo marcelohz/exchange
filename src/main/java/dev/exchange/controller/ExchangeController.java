@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api")
 public class ExchangeController {
@@ -24,8 +26,8 @@ public class ExchangeController {
 
     @PostMapping("/exchange")
     public ResponseEntity<ExchangeResponse> exchange(@RequestBody ExchangeRequest exchangeRequest) {
-        if(exchangeRequest.getBillValue() < 0) {
-            throw new InvalidDataException("billValue has to be greater than -1");
+        if(!Set.of(1, 2, 5, 10, 20, 50, 100).contains(exchangeRequest.getBillValue())) {
+            throw new InvalidDataException("billValue must be 1, 2, 5, 10, 20, 50, 100");
         }
         if(exchangeRequest.getMaxCoins() != null && exchangeRequest.getMaxCoins() < 0) {
             throw new InvalidDataException("maxCoins has to be greater than -1");
@@ -33,6 +35,7 @@ public class ExchangeController {
         ExchangeResponse response = exchangeService.processExchange(exchangeRequest.getBillValue(), exchangeRequest.getMaxCoins());
         return ResponseEntity.ok(response);
     }
+
 }
 
 

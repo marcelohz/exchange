@@ -58,7 +58,7 @@ public class ExchangeControllerIntegrationTest {
     public void testInsufficientCoins() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/api/exchange")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new ExchangeRequest(1000))))
+                        .content(objectMapper.writeValueAsString(new ExchangeRequest(100))))
                 .andExpect(MockMvcResultMatchers.status().isUnprocessableEntity())
                 .andExpect(MockMvcResultMatchers.content().string(containsString("insufficient")));
     }
