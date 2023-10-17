@@ -24,10 +24,6 @@ class ExchangeServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-//        when(exchangeInventory.getCoins25()).thenReturn(100);
-//        when(exchangeInventory.getCoins10()).thenReturn(100);
-//        when(exchangeInventory.getCoins5()).thenReturn(100);
-//        when(exchangeInventory.getCoins1()).thenReturn(100);
         when(exchangeInventory.getCoins(anyInt())).thenReturn(100);
     }
     @Test

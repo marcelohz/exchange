@@ -47,12 +47,4 @@ public class ExchangeInventory {
                 break;
         }
     }
-
-//    public void resetToDefault() {
-//        this.coins1 = defaultCoins1;
-//        this.coins5 = defaultCoins5;
-//        this.coins10 = defaultCoins10;
-//        this.coins25 = defaultCoins25;
-//    }
-
 }

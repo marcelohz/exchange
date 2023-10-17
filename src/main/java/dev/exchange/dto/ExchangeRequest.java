@@ -15,9 +15,5 @@ public class ExchangeRequest {
         this.billValue = billValue;
         this.maxCoins = null;
     }
-//    public ExchangeRequest(int billValue, Integer maxCoins) {
-//        this.billValue = billValue;
-//        this.maxCoins = maxCoins;
-//    }
 }
 
