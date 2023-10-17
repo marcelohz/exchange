@@ -21,17 +21,17 @@ public class ExchangeController {
         this.exchangeService = exchangeService;
     }
 
+
     @PostMapping("/exchange")
-    public ResponseEntity<ExchangeResponse> exchange(@RequestBody(required = false) ExchangeRequest exchangeRequest) {
-        if (exchangeRequest == null || !isValid(exchangeRequest)) {
-            throw new InvalidJsonFormatException("Invalid JSON, please provide billValue, e.g.: {\"billValue\":20}");
+    public ResponseEntity<ExchangeResponse> exchange(@RequestBody ExchangeRequest exchangeRequest) {
+        if(exchangeRequest.getBillValue() < 0) {
+            throw new InvalidDataException("billValue has to be greater than -1");
+        }
+        if(exchangeRequest.getMaxCoins() != null && exchangeRequest.getMaxCoins() < 0) {
+            throw new InvalidDataException("maxCoins has to be greater than -1");
         }
         ExchangeResponse response = exchangeService.processExchange(exchangeRequest.getBillValue(), exchangeRequest.getMaxCoins());
         return ResponseEntity.ok(response);
-    }
-
-    private boolean isValid(ExchangeRequest exchangeRequest) {
-        return exchangeRequest.getBillValue() > 0;
     }
 }
 

@@ -1,6 +1,5 @@
 package dev.exchange.controller;
 
-import dev.exchange.dto.ErrorResponse;
 import dev.exchange.service.ExceededMaxCoinsException;
 import dev.exchange.service.InsufficientCoinsException;
 import org.springframework.http.HttpStatus;
@@ -12,9 +11,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
-    @ExceptionHandler(InvalidJsonFormatException.class)
+    @ExceptionHandler(InvalidDataException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleInvalidJsonFormat(InvalidJsonFormatException ex) {
+    public ResponseEntity<String> handleInvalidJsonFormat(InvalidDataException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
